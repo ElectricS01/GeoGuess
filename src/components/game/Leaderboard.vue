@@ -6,7 +6,7 @@
         width="400"
         dark
         class="mt-2 mr-2"
-        v-if="guessString && !$vuetify.breakpoint.mobile && leaderboardShown"
+        v-if="guessString && !$vuetify.display.mobile && leaderboardShown"
     >
         {{ guessString }}
     </v-alert>

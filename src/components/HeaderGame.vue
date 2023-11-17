@@ -13,9 +13,7 @@
                 icon
                 @click="scoreboard = true"
                 v-if="
-                    $vuetify.breakpoint.mobile &&
-                    guessString &&
-                    leaderboardShown
+                    $vuetify.display.mobile && guessString && leaderboardShown
                 "
             >
                 <v-icon>mdi-scoreboard-outline</v-icon>
@@ -82,6 +80,7 @@ export default {
         'nbRound',
         'guessString',
         'leaderboardShown',
+        'mode',
     ],
     data() {
         return {

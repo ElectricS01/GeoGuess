@@ -31,17 +31,16 @@
             >
             <section v-if="search === '' && showMaps" class="sliders-container">
                 <v-slide-group show-arrows="always">
-                    <v-slide-item
+                    <v-slide-group-item
                         v-for="(mode, index) in areasFiltered"
                         :key="index"
-                        class="ma-4"
                     >
                         <HomeCard :data="mode" type="area" />
-                    </v-slide-item>
+                    </v-slide-group-item>
                 </v-slide-group>
             </section>
             <section v-else class="maps">
-                <HomeCard
+                <home-card
                     v-for="(mode, index) in areasFiltered"
                     :key="index"
                     :data="mode"

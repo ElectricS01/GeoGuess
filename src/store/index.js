@@ -1,22 +1,19 @@
-import Vue from 'vue';
 import Vuex from 'vuex';
-
-Vue.use(Vuex);
-
 function loadModules() {
-    const context = import.meta.globEager('./modules/*.js');
+    const localContext = require.context('./modules', false, /([a-z_]+)\.js$/i);
 
-    const modules = Object.keys(context)
+    const modules = localContext
+        .keys()
         .map((key) => ({ key, name: key.match(/([a-z_]+)(.store)?\.js$/i)[1] }))
         .reduce(
-            (modules, { key, name }) => ({
-                ...modules,
-                [`${name}Store`]: context[key].default,
+            (m, { key, name }) => ({
+                ...m,
+                [`${name}Store`]: localContext(key).default,
             }),
             {}
         );
 
-    return { context, modules };
+    return { context: localContext, modules };
 }
 
 const { context, modules } = loadModules();
@@ -24,29 +21,15 @@ const store = new Vuex.Store({
     modules,
 });
 
-if (import.meta.hot) {
-    import.meta.hot.accept(
-        [
-            './modules/alert.store.js',
-            './modules/area.store.js',
-            './modules/home.store.js',
-            './modules/settings.store.js',
-        ],
-        (newModules) => {
-            if (newModules) {
-                const { modules } = loadModules();
-                Object.keys(context).map((key, i) => {
-                    if (newModules[i]) {
-                        const name = key.match(/([a-z_]+)(.store)?\.js$/i)[1];
-                        modules[name + 'Store'] = newModules[i].default;
-                    }
-                });
+if (module.hot) {
+    // Hot reload whenever any module changes.
+    module.hot.accept(context.id, () => {
+        const { modules } = loadModules();
 
-                store.hotUpdate({
-                    modules,
-                });
-            }
-        }
-    );
+        store.hotUpdate({
+            modules,
+        });
+    });
 }
+
 export default store;
