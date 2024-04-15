@@ -1,10 +1,9 @@
 import bbox from '@turf/bbox';
 import firebase from 'firebase/app';
 import 'firebase/database';
-import { GAME_MODE, SCORE_MODE } from '../../constants';
-import i18n from '../../lang';
+import { GAME_MODE, SCORE_MODE } from '@/constants';
 import router from '../../router';
-import { getMaxDistanceBbox } from '../../utils';
+import { getMaxDistanceBbox } from '@/utils';
 import * as MutationTypes from '../mutation-types';
 
 export class GameSettings {
@@ -60,7 +59,7 @@ export default {
         players: [],
         name:
             localStorage.getItem('playerName')?.slice(0, 20) ||
-            i18n.t('CardRoomPlayerName.anonymousPlayerName'),
+            'CardRoomPlayerName.anonymousPlayerName',
         invalidName: false,
     }),
     mutations: {
@@ -75,9 +74,7 @@ export default {
 
             state.room.once('value', (snapshot) => {
                 if (snapshot.child('started').val()) {
-                    state.roomErrorMessage = i18n.t(
-                        'DialogRoom.alreadyStarted'
-                    );
+                    state.roomErrorMessage = 'DialogRoom.alreadyStarted';
                     state.room.off();
                     return;
                 }
@@ -90,14 +87,9 @@ export default {
                 state.playerNumber = playerNumber;
                 const name =
                     state.name === ''
-                        ? i18n.t('CardRoomPlayerName.anonymousPlayerName') +
+                        ? 'CardRoomPlayerName.anonymousPlayerName' +
                           playerNumber
                         : state.name;
-
-                state.room
-                    .child('playerName/player' + playerNumber)
-                    .onDisconnect()
-                    .remove();
 
                 if (numberOfPlayers === 0) {
                     // Put the tentative player's name into the room node
@@ -222,10 +214,10 @@ export default {
 
         searchRoom({ commit, dispatch, state }, roomName) {
             commit(MutationTypes.SETTINGS_SET_MODE_DIALOG_ROOM, false);
-            if (roomName === '') {
+            if (roomName == '') {
                 commit(
                     MutationTypes.SETTINGS_SET_ROOM_ERROR,
-                    i18n.t('DialogRoom.invalidRoomName')
+                    'DialogRoom.invalidRoomName'
                 );
             } else {
                 commit(MutationTypes.SETTINGS_SET_ROOM, roomName);
