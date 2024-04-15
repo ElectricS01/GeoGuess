@@ -8,7 +8,15 @@
         >
             <v-menu v-if="data.type === 'custom'">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon absolute top left dark v-bind="attrs" v-on="on">
+                    <v-btn
+                        icon
+                        absolute
+                        top
+                        left
+                        dark
+                        v-bind="attrs"
+                        v-on:click="on"
+                    >
                         <v-icon> mdi-file</v-icon>
                     </v-btn>
                 </template>
@@ -39,7 +47,7 @@
                                 to="/history"
                                 small
                                 v-bind="attrs"
-                                v-on="on"
+                                v-on:click="on"
                             >
                                 {{ $t(`Home.HomeCard.medal.${colorMedal}`) }}
                             </v-btn>
@@ -54,7 +62,7 @@
             </v-card-title>
         </v-img>
         <v-card-actions class="map-card__actions">
-            <v-subheader>{{ $t('Home.HomeCardMode.' + type) }}</v-subheader>
+            <v-card-text>{{ $t('Home.HomeCardMode.' + type) }}</v-card-text>
             <v-spacer />
             <HomeCardDialog :data="data" :type="type" />
         </v-card-actions>

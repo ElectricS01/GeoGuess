@@ -31,7 +31,7 @@
                     {{ $t('CardRoomMap.loadBtn') }}
                 </v-btn>
             </v-row>
-            <GmapMap
+            <GMapMap
                 ref="mapRef"
                 :center="{ lat: 10, lng: 10 }"
                 :zoom="1"

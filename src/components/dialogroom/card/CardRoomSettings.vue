@@ -208,7 +208,7 @@
                                                 <v-btn
                                                     icon
                                                     v-bind="attrs"
-                                                    v-on="on"
+                                                    v-on:click="on"
                                                 >
                                                     <v-icon>
                                                         mdi-information

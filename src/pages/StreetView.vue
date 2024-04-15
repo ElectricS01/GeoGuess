@@ -27,7 +27,7 @@
                                 dark
                                 fab
                                 v-bind="attrs"
-                                v-on="on"
+                                v-on:click="on"
                                 @click="resetLocation"
                             >
                                 <v-icon>mdi-crosshairs-gps</v-icon>

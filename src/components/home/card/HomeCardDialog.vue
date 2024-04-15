@@ -5,7 +5,7 @@
         :fullscreen="$viewport.width < 450"
     >
         <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" text color="darkGreen" v-on="on">
+            <v-btn v-bind="attrs" text color="darkGreen" v-on:click="on">
                 {{ $t('Home.play') }}
             </v-btn>
         </template>

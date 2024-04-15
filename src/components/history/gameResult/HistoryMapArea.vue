@@ -1,6 +1,6 @@
 <template>
     <div style="height: 400px" class="map-container">
-        <GmapMap
+        <GMapMap
             ref="mapRef"
             :center="{ lat: 0, lng: 0 }"
             :options="{
@@ -15,12 +15,12 @@
             class="map"
         >
             <div v-for="(r, index) in item.rounds" :key="index">
-                <GmapMarker
+                <GMapMarker
                     :position="r.position"
                     :label="(index + 1).toString()"
                 />
             </div>
-        </GmapMap>
+        </GMapMap>
 
         <div class="result-panel">
             <div v-for="(r, index) in item.rounds" :key="index">

@@ -1,6 +1,6 @@
 <template>
     <div id="map">
-        <GmapMap
+        <GMapMap
             id="mapClassic"
             ref="mapRef"
             :center="{ lat: 37.86926, lng: -122.254811 }"

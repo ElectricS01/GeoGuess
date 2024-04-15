@@ -4,7 +4,7 @@ import i18n from './lang';
 import store from './store/index';
 import App from '@/App.vue';
 import axios from '@/plugins/axios';
-// import vuetify from '@/plugins/vuetify.js';
+import vuetify from '@/plugins/vuetify.js';
 import VueGoogleMaps from '@fawmi/vue-google-maps';
 import VueAxios from 'vue-axios';
 import 'firebase/analytics';
@@ -13,7 +13,6 @@ import 'firebase/database';
 import VueClipboard from 'vue-clipboard2';
 import CountryNamePlugin from './plugins/countryNamePlugin';
 import './registerServiceWorker.js';
-import { createVuetify } from 'vuetify';
 
 export const app = createApp(App);
 
@@ -71,7 +70,6 @@ if (firebaseConfig.measurementId) firebase.analytics();
 app.use(i18n);
 app.use(store);
 
-const vuetify = createVuetify({});
 app.use(vuetify);
 
 app.mount('#app');

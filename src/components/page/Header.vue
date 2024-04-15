@@ -38,7 +38,7 @@
                     </v-btn>
                     <v-menu>
                         <template v-slot:activator="{ on }">
-                            <v-btn id="languageBtn" icon v-on="on">
+                            <v-btn id="languageBtn" icon v-on:click="on">
                                 <v-icon size="30"> mdi-translate </v-icon>
                             </v-btn>
                         </template>

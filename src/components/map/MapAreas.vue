@@ -24,7 +24,7 @@
                     {{ areaName }}
                 </span>
             </div>
-            <GmapMap
+            <GMapMap
                 id="mapAreas"
                 ref="mapRef"
                 :center="{ lat: 37.86926, lng: -122.254811 }"

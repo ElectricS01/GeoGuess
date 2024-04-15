@@ -10,7 +10,7 @@
             printMapFull ? 'container-map--full' : '',
             `container-map--size-${size}`,
         ]"
-        v-on="
+        v-on:click="
             $viewport.width >= 450 // Only on tablet and desktop Issue #104
                 ? {
                       mouseover: () => {

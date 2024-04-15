@@ -55,7 +55,7 @@
                                 {{ $t('DialogCustomMap.invalid') }}
                             </v-alert>
 
-                            <GmapMap
+                            <GMapMap
                                 ref="mapRef"
                                 :center="{ lat: 10, lng: 10 }"
                                 :zoom="1"

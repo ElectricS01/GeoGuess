@@ -29,7 +29,7 @@
         <div class="history-table__btns">
             <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on="on">
+                    <div v-bind="attrs" v-on:click="on">
                         <v-file-input
                             hide-input
                             accept="application/json"
@@ -43,7 +43,12 @@
 
             <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon v-bind="attrs" v-on="on" @click="exportSave">
+                    <v-btn
+                        icon
+                        v-bind="attrs"
+                        v-on:click="on"
+                        @click="exportSave"
+                    >
                         <v-icon>mdi-upload-outline</v-icon>
                     </v-btn>
                 </template>

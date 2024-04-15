@@ -1,5 +1,5 @@
 <template>
-    <GmapMap
+    <GMapMap
         :center="{ lat: 0, lng: 0 }"
         :options="{
             mapTypeControl: false,
@@ -14,10 +14,10 @@
     >
         <div v-if="!item.multiplayer">
             <div v-for="(r, index) in item.rounds" :key="index">
-                <GmapMarker
+                <GMapMarker
                     :position="{ lat: r.guess.lat, lng: r.guess.lng }"
                 />
-                <GmapInfoWindow :options="infoOptions" :position="r.guess">
+                <GMapInfoWindow :options="infoOptions" :position="r.guess">
                     <p>
                         <b>{{ $t('Maps.infoWindow.Distance') }}: </b>
                         {{
@@ -30,7 +30,7 @@
                         <b> {{ $t('Maps.infoWindow.Points') }}: </b>
                         {{ r.points }}
                     </p>
-                </GmapInfoWindow>
+                </GMapInfoWindow>
                 <GmapPolyline
                     :path="[
                         { lat: r.position.lat, lng: r.position.lng },
@@ -132,7 +132,7 @@
                 />
             </div>
         </div>
-    </GmapMap>
+    </GMapMap>
 </template>
 
 <script>
