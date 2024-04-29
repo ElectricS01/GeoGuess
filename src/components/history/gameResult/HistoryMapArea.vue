@@ -6,9 +6,10 @@
             :options="{
                 mapTypeControl: false,
                 gestureHandling: 'greedy',
-                styles: $vuetify.theme.dark
-                    ? $vuetify.theme.themes.dark.gmap
-                    : $vuetify.theme.themes.light.gmap,
+                styles:
+                    $vuetify.theme.global.name === 'dark'
+                        ? $vuetify.theme.themes.dark.gmap
+                        : $vuetify.theme.themes.light.gmap,
             }"
             :zoom="0"
             map-type-id="roadmap"

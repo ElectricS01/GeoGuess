@@ -24,41 +24,45 @@ const vuetify = createVuetify({
     theme: {
         themes: {
             light: {
-                primary: '#468F69',
-                secondary: '#808F87',
-                accent: '#D0CABC',
-                beige: '#ded3af',
-                darkGreen: '#4F665A',
-                streamerMode: '#9146ff',
-                error: '#ff5252',
-                background: '#ded3af',
-                home: '#ded3af',
-                header: '#f1e9d6',
-                card: '#f1e9d6',
-                notepad: '#fafafa',
-                page: '#ded3af',
-                content: '#f1e9d6',
-                footer: '#7fad94',
-                scrollbar: '#3e3e3e',
+                colors: {
+                    primary: '#468F69',
+                    secondary: '#808F87',
+                    accent: '#D0CABC',
+                    beige: '#ded3af',
+                    darkGreen: '#4F665A',
+                    streamerMode: '#9146ff',
+                    error: '#ff5252',
+                    background: '#ded3af',
+                    home: '#ded3af',
+                    header: '#f1e9d6',
+                    card: '#f1e9d6',
+                    notepad: '#fafafa',
+                    page: '#ded3af',
+                    content: '#f1e9d6',
+                    footer: '#7fad94',
+                    scrollbar: '#3e3e3e',
+                },
                 gmap: [],
             },
             dark: {
-                primary: '#468F69',
-                secondary: '#808F87',
-                accent: '#D0CABC',
-                beige: '#181818',
-                darkGreen: '#5d8772',
-                streamerMode: '#9146ff',
-                error: '#ff5252',
-                background: '#181818',
-                home: '#181818',
-                header: '#202020',
-                card: '#292929',
-                notepad: '#181818',
-                page: '#181818',
-                content: '#202020',
-                footer: '#202020',
-                scrollbar: '#3e3e3e',
+                colors: {
+                    primary: '#468F69',
+                    secondary: '#808F87',
+                    accent: '#D0CABC',
+                    beige: '#181818',
+                    darkGreen: '#5d8772',
+                    streamerMode: '#9146ff',
+                    error: '#ff5252',
+                    background: '#181818',
+                    home: '#181818',
+                    header: '#202020',
+                    card: '#292929',
+                    notepad: '#181818',
+                    page: '#181818',
+                    content: '#202020',
+                    footer: '#202020',
+                    scrollbar: '#3e3e3e',
+                },
                 gmapBg: '#242f3e',
                 gmap: [
                     {
@@ -259,10 +263,11 @@ const vuetify = createVuetify({
         options: {
             customProperties: true,
         },
-        dark:
-            localStorage.getItem('darkTheme') === 'true' ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches &&
-                localStorage.getItem('darkTheme') !== 'false'),
+        defaultTheme: ['dark', 'light'].includes(
+            localStorage.getItem('theme') || 'light'
+        )
+            ? localStorage.getItem('theme') || 'light'
+            : 'light',
     },
     rtl: RTL_LANGUAGES.includes(i18n.locale),
     lang: {

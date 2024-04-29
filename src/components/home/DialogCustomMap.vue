@@ -1,9 +1,9 @@
 <template>
     <v-dialog
-        :value="this.visibility"
+        :model-value="this.visibility"
         scrollable
         :fullscreen="$viewport.width < 450"
-        @input="$emit('change-visibility')"
+        @update:model-value="$emit('change-visibility')"
     >
         <v-card class="dialog-customs">
             <v-btn class="close-btn" icon @click="$emit('change-visibility')">
@@ -21,9 +21,9 @@
                                     $t('DialogCustomMap.inputName.placeholder')
                                 "
                                 :label="$t('DialogCustomMap.inputName.label')"
-                                :value="mapName"
-                                @input="setMapName"
-                                filled
+                                :model-value="mapName"
+                                @update:model-value="setMapName"
+                                variant="filled"
                                 :loading="loadingSave"
                                 hide-details
                             />
@@ -36,7 +36,7 @@
                                 :disabled="isSaveAllowed"
                                 :loading="loadingSave"
                             >
-                                <v-icon left dark> mdi-content-save </v-icon>
+                                <v-icon start> mdi-content-save </v-icon>
                                 {{ $t('DialogCustomMap.save') }}
                             </SaveButton>
                         </v-row>
@@ -50,7 +50,7 @@
                             <v-alert
                                 v-if="isValidGeoJson === false"
                                 type="error"
-                                transition="out-in"
+                                standard-easing
                             >
                                 {{ $t('DialogCustomMap.invalid') }}
                             </v-alert>
@@ -63,21 +63,20 @@
                                 style="width: 100%; height: 530px"
                                 :options="{
                                     gestureHandling: 'greedy',
-                                    styles: $vuetify.theme.dark
-                                        ? $vuetify.theme.themes.dark.gmap
-                                        : $vuetify.theme.themes.light.gmap,
+                                    styles:
+                                        $vuetify.theme.global.name === 'dark'
+                                            ? $vuetify.theme.themes.dark.gmap
+                                            : $vuetify.theme.themes.light.gmap,
                                 }"
                             />
                             <v-row>
                                 <v-btn
                                     class="mt-6 mr-auto ml-auto"
                                     color="secondary"
-                                    small
+                                    size="small"
                                     @click="downloadGeoJson"
                                 >
-                                    <v-icon left dark>
-                                        mdi-cloud-download
-                                    </v-icon>
+                                    <v-icon start> mdi-cloud-download </v-icon>
                                     {{ $t('DialogCustomMap.download') }}
                                 </v-btn>
                             </v-row>
@@ -85,7 +84,7 @@
                     </v-col>
 
                     <v-col>
-                        <v-radio-group v-model="type" row>
+                        <v-radio-group v-model="type" inline>
                             <v-radio
                                 :label="$t('DialogCustomMap.text')"
                                 value="text"
@@ -121,25 +120,24 @@
                         <v-textarea
                             v-else
                             :error="isValidGeoJson !== null && !isValidGeoJson"
-                            :success="isValidGeoJson"
-                            :value="geoJsonString"
+                            :model-value="geoJsonString"
                             :placeholder="placeholderGeoJson"
                             :rules="rulesTextArea"
                             rows="21"
-                            filled
+                            variant="filled"
                             clearable
                             :loading="loading"
-                            @input="onChangeTextArea"
+                            @update:model-value="onChangeTextArea"
                         />
                     </v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions>
-                <div class="flex-grow-1" />
+                <v-spacer />
                 <v-btn @click="clean" color="error">
                     {{ $t('DialogCustomMap.Clean') }}
                 </v-btn>
-                <v-btn dark color="primary" @click="$emit('change-visibility')">
+                <v-btn color="primary" @click="$emit('change-visibility')">
                     {{ $t('DialogCustomMap.OK') }}
                 </v-btn>
             </v-card-actions>

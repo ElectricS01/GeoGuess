@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-        :value="dialogSummary"
+        :model-value="dialogSummary"
         max-width="720"
         persistent
         :fullscreen="$viewport.width < 450"
@@ -35,8 +35,8 @@
                                 index == 0
                                     ? '#CCAC00'
                                     : index == 1
-                                    ? '#C0C0C0'
-                                    : '#CC8E34'
+                                      ? '#C0C0C0'
+                                      : '#CC8E34'
                             "
                             >mdi-crown</v-icon
                         >
@@ -62,7 +62,6 @@
                     <v-btn
                         id="play-again-button"
                         class="mt-8"
-                        dark
                         color="#43B581"
                         @click="$emit('finishGame')"
                     >
@@ -72,7 +71,6 @@
                         v-if="!multiplayer"
                         id="exit-button"
                         class="mt-8"
-                        dark
                         color="#f44336"
                         @click="$emit('playAgain')"
                     >

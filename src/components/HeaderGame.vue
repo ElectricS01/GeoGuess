@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar class="header-game" color="grey darken-4">
+        <v-app-bar class="header-game" color="grey-darken-4">
             <DialogMessage
                 :dialog-message="scoreboard"
                 dialog-title="Leaderboard"
@@ -9,7 +9,6 @@
                 @close="scoreboard = false"
             />
             <v-btn
-                dark
                 icon
                 @click="scoreboard = true"
                 v-if="
@@ -34,7 +33,7 @@
                     {{ roomName }}
                 </span>
             </div>
-            <div class="flex-grow-1" />
+            <v-spacer />
             <div class="round-score-container">
                 <span class="sub-text">{{ $t('HeaderGame.round') }}: </span>
                 <span id="roundLabel" class="main-text">

@@ -4,23 +4,22 @@
             <v-checkbox
                 v-model="showAreas"
                 :label="$t('Home.HomeCardMode.area')"
-                dense
+                density="default"
                 hide-details
             />
             <v-checkbox
                 v-model="showMaps"
                 :label="$t('Home.HomeCardMode.map')"
-                dense
+                density="default"
                 hide-details
             />
             <v-text-field
                 v-model="search"
                 class="pl-3"
                 prepend-inner-icon="mdi-magnify"
-                filled
-                outlined
+                variant="outlined"
                 single-line
-                dense
+                density="compact"
                 hide-details
                 width="50px"
             />
@@ -61,7 +60,7 @@
                 />
             </section>
         </template>
-        <p v-if="!showMaps && !showAreas" class="no-results subtitle-1">
+        <p v-if="!showMaps && !showAreas" class="no-results text-subtitle-1">
             {{ $t('Home.Sections.pleaseSelectLabel') }}
             <a @click="doBarrelRoll">
                 {{ $t('Home.Sections.barrelRoll') }} ;)

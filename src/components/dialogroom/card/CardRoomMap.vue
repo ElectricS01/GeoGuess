@@ -10,21 +10,17 @@
                     id="search-input"
                     v-model="place"
                     :items="items"
-                    :search-input.sync="search"
+                    :search.sync="search"
                     :loading="isLoading"
                     autofocus
                     :placeholder="$t('Home.searchBar.enterCity')"
-                    background-color="secondary"
-                    dark
+                    bg-color="secondary"
                     rounded
-                    height="15"
-                    full-width
-                    @input="loadPlaceGeoJSON"
+                    @update:model-value="loadPlaceGeoJSON"
                 />
                 <v-btn
                     @click="loadPlaceGeoJSON(place)"
                     color="dark"
-                    dark
                     id="loadBtn"
                     :loading="loadingGeoJson"
                 >
@@ -41,9 +37,10 @@
                     mapTypeControl: false,
                     fullscreenControl: false,
                     gestureHandling: 'greedy',
-                    styles: $vuetify.theme.dark
-                        ? $vuetify.theme.themes.dark.gmap
-                        : $vuetify.theme.themes.light.gmap,
+                    styles:
+                        $vuetify.theme.global.name === 'dark'
+                            ? $vuetify.theme.themes.dark.gmap
+                            : $vuetify.theme.themes.light.gmap,
                 }"
             />
             <v-row justify="space-around">
@@ -58,17 +55,16 @@
             </v-row>
         </v-card-text>
         <v-card-actions>
-            <v-btn plain v-if="geoJson" @click="reset">{{
+            <v-btn variant="plain" v-if="geoJson" @click="reset">{{
                 $t('CardRoomMap.reset')
             }}</v-btn>
-            <div class="flex-grow-1" />
-            <v-btn dark depressed color="error" @click="cancel">
+            <v-spacer />
+            <v-btn variant="flat" color="error" @click="cancel">
                 {{ $t('cancel') }}
             </v-btn>
             <v-btn
                 id="btnStart"
-                dark
-                depressed
+                variant="flat"
                 color="#43B581"
                 @click="next"
                 :disabled="loadingGeoJson || !canPlayGeoJSON"

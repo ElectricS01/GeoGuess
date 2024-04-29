@@ -9,6 +9,8 @@ module.exports = {
             ? ['eslint:recommended']
             : []),
         'plugin:vue/essential',
+        'plugin:vue/base',
+        'plugin:vuetify/base',
     ],
     globals: {
         launchQueue: 'readonly',
@@ -27,6 +29,7 @@ module.exports = {
         semi: ['error', 'always'],
         'vue/multi-word-component-names': 'off',
         'vue/valid-v-slot': 'off',
+        'vue/no-duplicate-attributes': 'off',
     },
     overrides: [
         {

@@ -5,7 +5,7 @@ import store from './store/index';
 import App from '@/App.vue';
 import axios from '@/plugins/axios';
 import vuetify from '@/plugins/vuetify.js';
-import VueGoogleMaps from '@fawmi/vue-google-maps';
+import VueGoogleMaps from 'vue-google-maps-community-fork';
 import VueAxios from 'vue-axios';
 import 'firebase/analytics';
 import firebase from 'firebase/app';

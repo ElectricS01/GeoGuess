@@ -19,10 +19,8 @@
             <v-btn
                 id="btnMaps"
                 href="#maps-container"
-                large
-                fab
+                size="large"
                 color="secondary"
-                dark
             >
                 <v-icon>mdi-arrow-down</v-icon>
             </v-btn>

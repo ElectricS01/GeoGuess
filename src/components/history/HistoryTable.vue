@@ -7,7 +7,7 @@
             <v-card>
                 <v-card-text>
                     <center>
-                        <v-icon x-large> mdi-clipboard-check </v-icon>
+                        <v-icon size="x-large"> mdi-clipboard-check </v-icon>
                         <p>{{ $t('urlCopied') }}</p>
                         <v-text-field v-model="url" readonly />
                     </center>
@@ -16,8 +16,7 @@
                     <v-spacer />
 
                     <v-btn
-                        dark
-                        depressed
+                        variant="flat"
                         color="#43B581"
                         @click="dialog = false"
                     >
@@ -27,9 +26,9 @@
             </v-card>
         </v-dialog>
         <div class="history-table__btns">
-            <v-tooltip top>
-                <template v-slot:activator="{ on, attrs }">
-                    <div v-bind="attrs" v-on:click="on">
+            <v-tooltip location="top">
+                <template v-slot:activator="{ props }">
+                    <div v-bind="props">
                         <v-file-input
                             hide-input
                             accept="application/json"
@@ -41,14 +40,9 @@
                 <span>{{ $t('History.importGeoSave') }}</span>
             </v-tooltip>
 
-            <v-tooltip top>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        icon
-                        v-bind="attrs"
-                        v-on:click="on"
-                        @click="exportSave"
-                    >
+            <v-tooltip location="top">
+                <template v-slot:activator="{ props }">
+                    <v-btn icon v-bind="props" @click="exportSave">
                         <v-icon>mdi-upload-outline</v-icon>
                     </v-btn>
                 </template>
@@ -72,12 +66,11 @@
             :headers="headers.filter((h) => !h.hide)"
             :items="items"
             :sort-by="['dateString']"
-            :sort-desc="[true]"
             :custom-sort="customSort"
             :expanded="items.length > 0 ? [items[items.length - 1]] : []"
         >
             <template v-slot:[`item.actions`]="{ item }">
-                <v-icon small class="mr-2" @click="share(item)">
+                <v-icon size="small" class="mr-2" @click="share(item)">
                     mdi-share
                 </v-icon>
             </template>

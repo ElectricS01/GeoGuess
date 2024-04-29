@@ -15,19 +15,16 @@
             />
 
             <div id="game-interface">
-                <v-overlay :value="!isReady && multiplayer" opacity="1" />
+                <v-overlay :model-value="!isReady && multiplayer" opacity="1" />
                 <div id="street-view" ref="streetView" />
 
                 <div id="game-interface__overlay">
-                    <v-tooltip top>
-                        <template v-slot:activator="{ on, attrs }">
+                    <v-tooltip location="top">
+                        <template v-slot:activator="{ props }">
                             <v-btn
                                 class="resetBtn"
                                 rounded
-                                dark
-                                fab
-                                v-bind="attrs"
-                                v-on:click="on"
+                                v-bind="props"
                                 @click="resetLocation"
                             >
                                 <v-icon>mdi-crosshairs-gps</v-icon>
@@ -74,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <v-overlay :value="overlay" opacity="0.8" z-index="1" />
+        <v-overlay :model-value="overlay" opacity="0.8" z-index="1" />
         <DialogMessage
             :dialog-message="dialogMessage"
             :dialog-title="dialogTitle"
@@ -89,7 +86,7 @@
             <v-alert
                 v-if="isVisibleDialog"
                 type="warning"
-                dismissible
+                closable
                 class="warning-alert"
             >
                 <b>{{ $t('StreetView.nearby.title') }}</b> :
@@ -99,8 +96,8 @@
                 id="warningCountdown"
                 v-model="isVisibleCountdownAlert"
                 type="info"
-                dismissible
-                transition="slide-x-transition"
+                closable
+                standard-easing
                 prominent
                 icon="mdi-clock-fast"
             >
@@ -110,7 +107,7 @@
                     color="white"
                     v-model="countdownPercentage"
                     absolute
-                    bottom
+                    location="bottom"
                 ></v-progress-linear>
             </v-alert>
         </div>

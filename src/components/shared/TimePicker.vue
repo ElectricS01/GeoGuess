@@ -2,20 +2,20 @@
     <v-container class="time-picker">
         <v-row>
             <v-slider
-                :value="value"
+                :model-value="value"
                 class="align-center"
                 max="600"
                 min="0"
                 step="30"
-                ticks
+                show-ticks
                 hide-details
-                @change="changeAll"
+                update:modelValue="changeAll"
             />
         </v-row>
         <v-row>
             <div v-if="this.value > 0" class="time-input">
                 <v-text-field
-                    :value="Math.floor(this.value / 60)"
+                    :model-value="Math.floor(this.value / 60)"
                     reverse
                     type="number"
                     class="time-input__minute"
@@ -24,7 +24,7 @@
                 <p>:</p>
 
                 <v-text-field
-                    :value="secondsValue"
+                    :model-value="secondsValue"
                     type="number"
                     class="time-input__second"
                     @change="changeSecond"

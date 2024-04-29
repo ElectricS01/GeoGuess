@@ -1,10 +1,9 @@
 <template>
     <v-alert
         id="leaderboard-alert"
-        transition="slide-x-transition"
+        standard-easing
         icon="mdi-scoreboard-outline"
         width="400"
-        dark
         class="mt-2 mr-2"
         v-if="guessString && !$vuetify.display.mobile && leaderboardShown"
     >

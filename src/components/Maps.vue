@@ -38,32 +38,34 @@
 
         <div class="container-map_controls">
             <div class="container-map_btns">
-                <v-btn fab x-small @click="showNotepad">
-                    <v-icon dark> mdi-file-document-edit </v-icon>
+                <v-btn size="x-small" @click="showNotepad">
+                    <v-icon> mdi-file-document-edit </v-icon>
                 </v-btn>
 
                 <v-btn
                     id="btnDown"
-                    fab
-                    x-small
+                    size="x-small"
                     :disabled="size < 2"
                     @click="size--"
                 >
-                    <v-icon dark> mdi-arrow-bottom-left </v-icon>
+                    <v-icon> mdi-arrow-bottom-left </v-icon>
                 </v-btn>
 
                 <v-btn
                     id="btnUp"
-                    fab
-                    x-small
+                    size="x-small"
                     :disabled="size > 3"
                     @click="size++"
                 >
-                    <v-icon dark> mdi-arrow-top-right </v-icon>
+                    <v-icon> mdi-arrow-top-right </v-icon>
                 </v-btn>
 
-                <v-btn id="btnPin" fab x-small @click="pinActive = !pinActive">
-                    <v-icon dark> mdi-pin{{ pinActive ? '-off' : '' }} </v-icon>
+                <v-btn
+                    id="btnPin"
+                    size="x-small"
+                    @click="pinActive = !pinActive"
+                >
+                    <v-icon> mdi-pin{{ pinActive ? '-off' : '' }} </v-icon>
                 </v-btn>
             </div>
         </div>
@@ -74,8 +76,7 @@
                 isMakeGuessButtonClicked
             "
             id="hide-map-button"
-            fab
-            x-small
+            size="x-small"
             color="red"
             @click="hideMap"
         >
@@ -150,7 +151,7 @@
                 !isNextButtonVisible
             "
             id="make-guess-button"
-            class="primary"
+            class="bg-primary"
             @click="showMap"
         >
             {{ $t('Maps.makeGuess') }}

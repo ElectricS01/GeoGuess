@@ -10,17 +10,19 @@
                         <label class="card_settings__mode__label">{{
                             $t('CardRoomSettings.modeLabel')
                         }}</label>
-                        <v-flex
+                        <v-row
                             class="card_settings__mode__btns d-flex justify-space-around w-100"
                         >
                             <v-btn
                                 id="modeClassicBtn"
-                                :text="
+                                :variant="
                                     gameSettings.modeSelected !==
                                     gameMode.CLASSIC
+                                        ? 'text'
+                                        : undefined
                                 "
                                 rounded
-                                outlined
+                                variant="outlined"
                                 @click="
                                     () =>
                                         setGameSettings({
@@ -28,17 +30,19 @@
                                         })
                                 "
                             >
-                                <v-icon large> mdi-map-marker </v-icon>
+                                <v-icon size="large"> mdi-map-marker </v-icon>
                                 <span>{{ $t('modes.classic') }}</span>
                             </v-btn>
                             <v-btn
                                 id="modeCountryBtn"
-                                :text="
+                                :variant="
                                     gameSettings.modeSelected !==
                                     gameMode.COUNTRY
+                                        ? 'text'
+                                        : undefined
                                 "
                                 rounded
-                                outlined
+                                variant="outlined"
                                 @click="
                                     () =>
                                         setGameSettings({
@@ -46,27 +50,30 @@
                                         })
                                 "
                             >
-                                <v-icon large> mdi-flag </v-icon>
+                                <v-icon size="large"> mdi-flag </v-icon>
                                 <span>{{ $t('modes.country') }}</span>
                             </v-btn>
-
                             <v-btn
                                 id="modeCustomAreaBtn"
                                 v-if="
                                     gameSettings.modeSelected ===
                                     gameMode.CUSTOM_AREA
                                 "
-                                :text="
+                                :variant="
                                     gameSettings.modeSelected !==
                                     gameMode.CUSTOM_AREA
+                                        ? 'text'
+                                        : undefined
                                 "
                                 rounded
-                                outlined
+                                variant="outlined"
                             >
-                                <v-icon large> mdi-flag-checkered </v-icon>
+                                <v-icon size="large">
+                                    mdi-flag-checkered
+                                </v-icon>
                                 <span>{{ $t('modes.custom_area') }}</span>
                             </v-btn>
-                        </v-flex>
+                        </v-row>
                     </v-row>
 
                     <v-row class="mb-0">
@@ -85,8 +92,8 @@
                     >
                         <v-col>
                             <v-checkbox
-                                :input-value="gameSettings.zoomControl"
-                                @change="
+                                :model-value="gameSettings.zoomControl"
+                                @update:model-value="
                                     (zoomControl) =>
                                         setGameSettings({ zoomControl })
                                 "
@@ -94,8 +101,8 @@
                                 hide-details
                             />
                             <v-checkbox
-                                :input-value="gameSettings.moveControl"
-                                @change="
+                                :model-value="gameSettings.moveControl"
+                                @update:model-value="
                                     (moveControl) =>
                                         setGameSettings({ moveControl })
                                 "
@@ -103,8 +110,8 @@
                                 hide-details
                             />
                             <v-checkbox
-                                :input-value="gameSettings.panControl"
-                                @change="
+                                :model-value="gameSettings.panControl"
+                                @update:model-value="
                                     (panControl) =>
                                         setGameSettings({ panControl })
                                 "
@@ -113,8 +120,8 @@
                             />
                             <v-checkbox
                                 class="mt-2"
-                                :input-value="gameSettings.allPanorama"
-                                @change="
+                                :model-value="gameSettings.allPanorama"
+                                @update:model-value="
                                     (allPanorama) =>
                                         setGameSettings({ allPanorama })
                                 "
@@ -124,8 +131,8 @@
                                 hide-details
                             />
                             <v-checkbox
-                                :input-value="gameSettings.optimiseStreetView"
-                                @change="
+                                :model-value="gameSettings.optimiseStreetView"
+                                @update:model-value="
                                     (optimiseStreetView) =>
                                         setGameSettings({ optimiseStreetView })
                                 "
@@ -137,8 +144,8 @@
                             <v-checkbox
                                 class="mt-2"
                                 v-if="!singlePlayer"
-                                :input-value="gameSettings.scoreLeaderboard"
-                                @change="
+                                :model-value="gameSettings.scoreLeaderboard"
+                                @update:model-value="
                                     (scoreLeaderboard) =>
                                         setGameSettings({ scoreLeaderboard })
                                 "
@@ -147,8 +154,8 @@
                             />
                             <v-checkbox
                                 v-if="!singlePlayer"
-                                :input-value="gameSettings.guessedLeaderboard"
-                                @change="
+                                :model-value="gameSettings.guessedLeaderboard"
+                                @update:model-value="
                                     (guessedLeaderboard) =>
                                         setGameSettings({ guessedLeaderboard })
                                 "
@@ -163,8 +170,8 @@
                             <v-text-field
                                 v-if="!singlePlayer"
                                 :label="$t('CardRoomSettings.countDownLabel')"
-                                :value="gameSettings.countdown"
-                                @input="
+                                :model-value="gameSettings.countdown"
+                                @update:model-value="
                                     (countdown) =>
                                         setGameSettings({
                                             countdown: +countdown,
@@ -180,10 +187,10 @@
                                 "
                             >
                                 <v-checkbox
-                                    :input-value="
+                                    :model-value="
                                         gameSettings.timeAttackSelected
                                     "
-                                    @change="
+                                    @update:model-value="
                                         (timeAttackSelected) =>
                                             setGameSettings({
                                                 timeAttackSelected,
@@ -198,18 +205,14 @@
                                             )
                                         }}
                                         <v-tooltip
-                                            top
+                                            location="top"
                                             max-width="350"
                                             class="tooltip-timeattack"
                                         >
                                             <template
-                                                v-slot:activator="{ on, attrs }"
+                                                v-slot:activator="{ props }"
                                             >
-                                                <v-btn
-                                                    icon
-                                                    v-bind="attrs"
-                                                    v-on:click="on"
-                                                >
+                                                <v-btn icon v-bind="props">
                                                     <v-icon>
                                                         mdi-information
                                                     </v-icon>
@@ -241,13 +244,13 @@
                                     type="number"
                                     :disabled="gameSettings.timeAttackSelected"
                                     :label="$t('CardRoomSettings.nbRound')"
-                                    :value="
+                                    :model-value="
                                         gameSettings.timeAttackSelected
                                             ? 10
                                             : gameSettings.nbRoundSelected
                                     "
                                     min="1"
-                                    @input="
+                                    @update:model-value="
                                         (nbRoundSelected) =>
                                             setGameSettings({
                                                 nbRoundSelected:
@@ -265,7 +268,7 @@
                                     "
                                     :input-value="gameSettings.scoreMode"
                                     :items="scoreModes"
-                                    @change="
+                                    @update:model-value="
                                         (scoreMode) =>
                                             setGameSettings({ scoreMode })
                                     "
@@ -274,9 +277,9 @@
                                 <v-autocomplete
                                     v-if="optionsArea.length > 0"
                                     :label="$t('CardRoomSettings.selectAreas')"
-                                    :value="gameSettings.areaParams"
+                                    :model-value="gameSettings.areaParams"
                                     :items="optionsArea"
-                                    @input="
+                                    @update:model-value="
                                         (areaParams) =>
                                             setGameSettings({ areaParams })
                                     "
@@ -289,14 +292,13 @@
             </v-row>
         </v-card-text>
         <v-card-actions>
-            <div class="flex-grow-1" />
-            <v-btn dark depressed color="error" @click="cancel">
+            <v-spacer />
+            <v-btn variant="flat" color="error" @click="cancel">
                 {{ $t('cancel') }}
             </v-btn>
             <v-btn
                 id="btnNextSettings"
-                dark
-                depressed
+                variant="flat"
                 color="#43B581"
                 @click="onClickNext"
             >

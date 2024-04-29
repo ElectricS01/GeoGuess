@@ -17,7 +17,6 @@
                         <v-chip
                             class="medal-count__chip"
                             :color="medalcolors[medal]"
-                            dark
                         >
                             {{ $t(`Home.HomeCard.medal.${medal}`) }}
                         </v-chip>
@@ -39,7 +38,6 @@
                 :search="search"
                 :items-per-page="-1"
                 sort-by="maxScore"
-                sort-desc
                 disable-pagination
                 @click:row="onClickRow"
             >
@@ -50,11 +48,7 @@
                     </div>
                 </template>
                 <template v-slot:item.medal="{ item }">
-                    <v-chip
-                        v-if="item.medal"
-                        :color="medalcolors[item.medal]"
-                        dark
-                    >
+                    <v-chip v-if="item.medal" :color="medalcolors[item.medal]">
                         {{ $t(`Home.HomeCard.medal.${item.medal}`) }}
                     </v-chip>
                 </template>

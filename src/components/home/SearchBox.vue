@@ -7,7 +7,7 @@
                 class="search-box__btns__btn"
                 rounded
                 color="primary"
-                large
+                size="large"
                 @click="openDialog()"
             >
                 {{ $t('DialogRoom.singlePlayer') }}
@@ -17,7 +17,7 @@
                 class="search-box__btns__btn"
                 rounded
                 color="secondary"
-                large
+                size="large"
                 @click="openDialog(false)"
             >
                 {{ $t('DialogRoom.withFriends') }}
@@ -26,7 +26,7 @@
         </div>
         <div class="search-box__mapmenu">
             <v-btn
-                text
+                variant="text"
                 class="btn-customs"
                 color="primary"
                 height="50"

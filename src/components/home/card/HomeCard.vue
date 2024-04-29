@@ -1,22 +1,14 @@
 <template>
     <v-card class="map-card" rounded="lg" width="200">
         <v-img
-            class="white--text align-end"
+            class="text-white align-end"
             height="150px"
             gradient="rgba(0,0,0,0), rgba(0,0,0,0.8)"
             :src="data.imageSrc"
         >
             <v-menu v-if="data.type === 'custom'">
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        icon
-                        absolute
-                        top
-                        left
-                        dark
-                        v-bind="attrs"
-                        v-on:click="on"
-                    >
+                <template v-slot:activator="{ props }">
+                    <v-btn icon absolute location="top left" v-bind="props">
                         <v-icon> mdi-file</v-icon>
                     </v-btn>
                 </template>
@@ -38,16 +30,14 @@
                     class="map-card__medal-banner"
                     :class="`map-card__medal-banner--${colorMedal}`"
                 >
-                    <v-tooltip top>
-                        <template v-slot:activator="{ on, attrs }">
+                    <v-tooltip location="top">
+                        <template v-slot:activator="{ props }">
                             <v-btn
                                 class="map-card__medal-button"
-                                dark
                                 icon
                                 to="/history"
-                                small
-                                v-bind="attrs"
-                                v-on:click="on"
+                                size="small"
+                                v-bind="props"
                             >
                                 {{ $t(`Home.HomeCard.medal.${colorMedal}`) }}
                             </v-btn>
