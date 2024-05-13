@@ -64,11 +64,11 @@ footer {
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: center;
-        .theme--light & p,
+        .v-theme--light & p,
         a {
             color: #484848;
         }
-        .theme--dark & p,
+        .v-theme--dark & p,
         a {
             color: #ffffff;
         }

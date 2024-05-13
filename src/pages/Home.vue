@@ -86,11 +86,12 @@ export default {
     }
     background-color: var(--v-home-base);
     .home-page__main {
+        margin-top: 100px;
         position: relative;
-        .theme--light & .home-page__main__container {
+        .v-theme--light & .home-page__main__container {
             background: url('../assets/home/world.svg');
         }
-        .theme--dark & .home-page__main__container {
+        .v-theme--dark & .home-page__main__container {
             background: url('../assets/home/world-dark.svg');
         }
         .home-page__main__container {

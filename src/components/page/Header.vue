@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar class="header" height="100">
+        <v-app-bar class="header" height="92">
             <router-link to="/">
                 <img
                     class="header__logo"
@@ -141,8 +141,8 @@ export default {
 <style lang="scss" scoped>
 .header {
     z-index: 1;
-    padding: 0 5%;
-    width: 95% !important;
+    padding: 4px calc(16px + 5%) !important;
+    width: 90% !important;
     background-color: rgb(var(--v-theme-header)) !important;
     .header__nav,
     .header__nav__btns {
@@ -152,11 +152,11 @@ export default {
             margin: 0 1.5rem;
         }
     }
-    .theme--light .header__nav__btns .v-btn {
+    .v-theme--light .header__nav__btns .v-btn {
         color: rgba(0, 0, 0, 0.87);
         margin: 0.25rem;
     }
-    .theme--dark .header__nav__btns .v-btn {
+    .v-theme--dark .header__nav__btns .v-btn {
         color: rgba(196, 110, 110, 0.87);
         margin: 0.25rem;
     }
