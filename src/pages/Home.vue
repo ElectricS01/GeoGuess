@@ -20,6 +20,7 @@
                 id="btnMaps"
                 href="#maps-container"
                 size="large"
+                icon
                 color="secondary"
             >
                 <v-icon>mdi-arrow-down</v-icon>
@@ -128,6 +129,9 @@ export default {
             }
         }
         #btnMaps {
+            width: 64px;
+            height: 64px;
+            z-index: 1000;
             position: absolute;
             margin: auto;
             bottom: 0.4rem;

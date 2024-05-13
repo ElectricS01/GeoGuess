@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <v-card-title>
-            <p>{{ $t('Home.about') }}</p>
+            <h3>{{ $t('Home.about') }}</h3>
         </v-card-title>
         <v-card-text>
             <p class="section-description">

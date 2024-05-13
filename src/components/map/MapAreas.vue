@@ -241,7 +241,7 @@ export default {
     .result-panel {
         height: 100%;
         padding: 2%;
-        background: var(--v-card-base);
+        background: rgb(var(--v-theme-card));
         display: flex;
         flex-direction: column;
         width: 30%;
