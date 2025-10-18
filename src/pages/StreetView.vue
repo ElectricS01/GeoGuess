@@ -320,9 +320,6 @@ export default {
             );
         }
         await this.$gmapApiPromiseLazy();
-        this.panorama = new google.maps.StreetViewPanorama(
-            this.$refs.streetView
-        );
 
         if (!this.streetViewService) {
             this.streetViewService = new StreetViewService(
@@ -519,6 +516,9 @@ export default {
         async loadStreetView() {
             let { panorama, roundInfo, warning, area } =
                 await this.streetViewService.getStreetView(this.round);
+            this.panorama = new google.maps.StreetViewPanorama(
+                this.$refs.streetView
+            );
             this.randomLatLng = panorama.location.latLng;
             this.randomFeatureProperties = roundInfo;
             this.area = area;
